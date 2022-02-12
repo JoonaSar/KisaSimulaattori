@@ -1,0 +1,71 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+Kisasimulaattorin R-testi
+Gammajakauma ois ehkä hyvä
+
+
+```{r}
+lkm <- 100
+vartionnimi <- paste("Vartio", 1:lkm)
+aika <- replicate(lkm, 0)
+vartiot <- data.frame(vartionnimi, aika)
+
+simuloirasti <- function(ka_aika, hajauma, vartiot, suorituspisteet){
+  
+  vapaat_suorituspisteet <- suorituspisteet
+  tilanne <- replicate(nrow(vartiot), "saapumatta")
+  vartiot <- cbind(vartiot, tilanne)
+  aloitusaika <- vartiot$aika[1] - 1
+  kello = 0
+  
+  while(!all(vartiot$tilanne == "valmis") & kello < 10000){
+    # Edistä rastin kelloa minuutilla
+    kello <- kello + 1
+    
+    # Siirrä saapuvat vartiot odottamaan
+    saapuvat <- (1:nrow(vartiot))[vartiot$aika <= kello & vartiot$tilanne == "saapumatta"]
+    saapuvat <- saapuvat[!is.na(saapuvat)]
+    if(length(saapuvat >= 1)){
+      vartiot[, ]$tilanne <- "odottaa"
+    }
+    
+    # Siirrä odottavat vartiot vapaille suorituspisteille
+    # TODO Lisää jonotusvuorot
+    if(vapaat_suorituspisteet >= 1 && any(vartiot$tilanne == "odottaa")){
+      suorittamaan <- (1:nrow(vartiot))[vartiot$tilanne == "odottaa"][1:vapaat_suorituspisteet]
+      suorittamaan <- suorittamaan[!is.na(suorittamaan)]
+      
+      if(length(suorittamaan) >= 1){
+        vartiot[suorittamaan, ]$tilanne <- "suorittaa"
+        vartiot[suorittamaan, ]$aika <- kello + rgamma(length(suorittamaan), shape = ka_aika/hajauma, scale = hajauma)
+        vapaat_suorituspisteet <- vapaat_suorituspisteet - length(suorittamaan)
+      }
+    }
+    
+
+    # Siirrä valmiit vartiot pois suorituspisteiltä
+    valmistuvat <- (1:nrow(vartiot))[vartiot$aika <= kello & vartiot$tilanne == "suorittaa"]
+    valmistuvat <- valmistuvat[!is.na(valmistuvat)]
+    vapaat_suorituspisteet <- vapaat_suorituspisteet + length(valmistuvat)
+    if(length(valmistuvat >= 1)){
+      vartiot[valmistuvat, ]$tilanne <- "valmis"
+    }
+    
+  }
+  return(subset(vartiot, select = -c(tilanne)))
+}
+par(mfrow=c(2,2))
+hist(vartiot$aika)
+vartiot <- simuloirasti(60, 0.1, vartiot, 100)
+hist(vartiot$aika)
+vartiot <- simuloirasti(30, 0.5, vartiot, 50)
+hist(vartiot$aika)
+vartiot <- simuloirasti(120, 1, vartiot, 100)
+hist(vartiot$aika)
+
+
+```
+
