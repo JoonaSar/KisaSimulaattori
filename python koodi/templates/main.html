@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
-{% block title %}KisaSimulaattori{% endblock%}
-{% block nimi %} Pääsivu {% endblock %}
-{% block content %}
+{% block title %}Pääsivu{% endblock%}
+{% block navbar_title %}Pääsivu{% endblock %}
 
+{% block content %}
+  
   {% for kisa in kisat %}
     <a href="{{ url_for('avaa_kisa', filename=kisa) }}"> {{kisa}} </a>
   {% endfor %}
+
+  <a href="{{ url_for('uusi_kisa') }}">Luo uusi kisa</a>
 
 {% endblock%}
         

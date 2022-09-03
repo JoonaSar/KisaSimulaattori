@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Uusi kisa{% endblock %}
+{% block navbar_title %}Uusi kisa{% endblock %}
+
+{% block content %} 
+{% if err%} 
+    <p>Tämän kisa on jo olemassa, valitse toinen nimi!</p>
+{% endif %}
+<form action="#" method="post">
+    <p>Kisan nimi:</p>
+    <p><input type="text" name="kisan_nimi"></p>
+    <p><input type="submit" name="submit"></p>
+</form>
+
+{% endblock %}
+

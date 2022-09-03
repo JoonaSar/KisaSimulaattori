@@ -4,7 +4,7 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
       <meta charset="utf-8">
-        <title>{% block title %} {% endblock %}</title>
+        <title>KisaSimulaattori | {% block title %}{% endblock %}</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -15,7 +15,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <span class="navbar-text">
-                    {% block nimi %}{% endblock %}
+                    {% block navbar_title %}{% endblock %}
                 </span>
                 <li class="nav-item active">
                   <a class="nav-link" href="#">Apua <span class="sr-only">(current)</span></a>

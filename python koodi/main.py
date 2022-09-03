@@ -4,6 +4,7 @@ from rataosuus import Kulku, Rasti
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
 
 def main():
     """sarjakohtaiset_maarat = {"punainen": 50, "keltainen": 50}
@@ -24,5 +25,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+def luo_kisa(kisan_nimi):
+    p = Path("./saves")
+    tallennetut_kisat = [f.name for f in p.iterdir() if f.is_file]
+    if kisan_nimi in tallennetut_kisat:
+        raise FileExistsError
+    else:
+        p = Path(f"./saves/{kisan_nimi}")
+        p.touch()
+        return 
+
 
 
