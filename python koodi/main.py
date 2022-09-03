@@ -1,14 +1,12 @@
-
-
-#%%
 from kisaajat import Kisaajat
 from vartio import Vartio
 from rataosuus import Kulku, Rasti
 import pandas as pd 
 import numpy as np
 import matplotlib.pyplot as plt
+
 def main():
-    sarjakohtaiset_maarat = {"punainen": 50, "keltainen": 50}
+    """sarjakohtaiset_maarat = {"punainen": 50, "keltainen": 50}
 
     kisaajat = Kisaajat(sarjakohtaiset_maarat, 0)
     
@@ -22,9 +20,9 @@ def main():
     kisaajat.simuloi_rataosuus(kulku1)
     kisaajat.plot_ajat()
     kisaajat.simuloi_rataosuus(rasti2)
-    kisaajat.plot_ajat()
+    kisaajat.plot_ajat()"""
 
 if __name__ == "__main__":
     main()
 
-# %%
+
