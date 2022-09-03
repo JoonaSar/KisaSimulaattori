@@ -12,11 +12,10 @@ class Vartio():
         self.numero = numero 
         self.sarja = sarja
         self.aika = aika
-        self.historia = []
     
     
     def __str__(self):
-        return f'{self.nimi}, {self.numero}, sarjassa {self.sarja}\n Kulkuhistoria kisan aikana: {repr(self.historia)}\n'
+        return f'{self.nimi}, {self.numero}, sarjassa {self.sarja}\n'
 
     def __repr__(self):
         return str(self)
@@ -24,14 +23,5 @@ class Vartio():
     def __lt__(self, other):
         return self.aika < other.aika
 
-    def jonotus_yht(self):
-        jonotusta = 0
-        jonossa = False
-        for tapahtuma in self.historia:
-            if jonossa:
-                jonotusta += tapahtuma[2] - alkoi
-                jonossa = False
-            if tapahtuma[1] == "jonotus alkoi":
-                jonossa = True
-                alkoi = tapahtuma[2]
-        return jonotusta
+    # TODO: Jonotuslista
+    

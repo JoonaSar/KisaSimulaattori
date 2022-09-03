@@ -11,6 +11,6 @@ class Kisa():
         self.rataosuudet.append(rataosuus)
 
     def simuloi_kisa(self):
-        for rataosuus in rataosuudet:
+        for rataosuus in self.rataosuudet:
             self.kisaajat.simuloi(rataosuus)
         

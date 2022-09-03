@@ -14,10 +14,11 @@ class Kisaajat():
         self.vartiolista = rataosuus.simuloi(self.vartiolista)
     
     def plot_jonotusajat(self):
-        fig, ax = plt.subplots(figsize=(10, 7), constrained_layout = True)
-        ax.hist([vartio.jonotus_yht() for vartio in self.vartiolista], bins = 15)
-        ax.set_xlabel("Jonotusaika yhteensä (min)")
-        ax.set_ylabel("Vartiot")
+        raise NotImplementedError
+        #fig, ax = plt.subplots(figsize=(10, 7), constrained_layout = True)
+        #ax.hist([vartio.jonotus_yht() for vartio in self.vartiolista], bins = 15)
+        #ax.set_xlabel("Jonotusaika yhteensä (min)")
+        #ax.set_ylabel("Vartiot")
 
     def plot_ajat(self):
         fig, ax = plt.subplots(figsize=(10, 7))
